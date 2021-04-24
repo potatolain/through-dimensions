@@ -88,6 +88,10 @@ void main(void) {
                 gameState = GAME_STATE_RUNNING;
                 break;
 
+            case GAME_STATE_TRANSITION:
+                // FIXME: do something
+                gameState = GAME_STATE_RUNNING;
+                break;
             case GAME_STATE_RUNNING:
                 // TODO: Might be nice to have this only called when we have something to update, and maybe only update the piece we 
                 // care about. (For example, if you get a key, update the key count; not everything!

@@ -29,6 +29,8 @@ CODE_BANK(PRG_BANK_MAP_SPRITES);
 #define currentSpriteFullTileCollisionWidth tempInt4
 #define currentSpriteFullTileCollisionHeight tempInt4
 
+ZEROPAGE_DEF(unsigned char, megaTemp);
+
 
 
 ZEROPAGE_DEF(unsigned char, lastPlayerSpriteCollisionId);
@@ -72,7 +74,16 @@ void update_map_sprites(void) {
         }
 
 
-        if (currentMapSpriteData[currentMapSpriteIndex + MAP_SPRITE_DATA_POS_TYPE] == SPRITE_TYPE_OFFSCREEN) {
+        megaTemp = currentMapSpriteData[currentMapSpriteIndex + MAP_SPRITE_DATA_POS_TYPE];
+        if (
+             megaTemp == SPRITE_TYPE_OFFSCREEN || 
+            (
+                megaTemp == SPRITE_TYPE_TRANSITION && (
+                    currentLayer != currentMapSpriteData[currentMapSpriteIndex + MAP_SPRITE_DATA_POS_HEALTH] && 
+                    currentLayer != currentMapSpriteData[currentMapSpriteIndex + MAP_SPRITE_DATA_POS_MOVE_SPEED]
+                )
+            )
+        ) {
             // Hide it and move on.
             oam_spr(SPRITE_OFFSCREEN, SPRITE_OFFSCREEN, 0, 0, oamMapSpriteIndex);
             oam_spr(SPRITE_OFFSCREEN, SPRITE_OFFSCREEN, 0, 0, oamMapSpriteIndex + 4);

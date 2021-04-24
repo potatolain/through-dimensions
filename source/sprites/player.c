@@ -426,6 +426,17 @@ void handle_player_sprite_collision(void) {
                     playerControlsLockTime = 0;
                 }
                 break;
+
+            case SPRITE_TYPE_TRANSITION:
+                if (controllerState & PAD_A && !(lastControllerState & PAD_A)) {
+                    if (currentLayer == currentMapSpriteData[currentMapSpriteIndex + MAP_SPRITE_DATA_POS_HEALTH]) {
+                        currentLayer = currentMapSpriteData[currentMapSpriteIndex + MAP_SPRITE_DATA_POS_MOVE_SPEED];
+                    } else {
+                        currentLayer = currentMapSpriteData[currentMapSpriteIndex + MAP_SPRITE_DATA_POS_HEALTH];
+                    }
+                    gameState = GAME_STATE_TRANSITION;
+                }
+                break;
             case SPRITE_TYPE_ENDGAME:
                 gameState = GAME_STATE_CREDITS;
                 break;
