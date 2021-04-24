@@ -15,6 +15,7 @@ ZEROPAGE_DEF(unsigned char, gameState);
 ZEROPAGE_DEF(unsigned char, currentWorldId);
 
 ZEROPAGE_DEF(unsigned char, currentStageId);
+ZEROPAGE_DEF(unsigned char, playerGemCount);
 
 ZEROPAGE_ARRAY_DEF(unsigned char, screenBuffer, 0x20);
 

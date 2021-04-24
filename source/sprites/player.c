@@ -353,6 +353,18 @@ void handle_player_sprite_collision(void) {
                     currentMapSpritePersistance[playerOverworldPosition] |= bitToByte[lastPlayerSpriteCollisionId];
                 }
                 break;
+            case SPRITE_TYPE_GEM:
+                if (playerGemCount < TOTAL_GEMS) {
+                    ++playerGemCount;
+                } else {
+                    playerGemCount = TOTAL_GEMS;
+                }
+                sfx_play(SFX_GEM, SFX_CHANNEL_3);
+                // Mark the sprite as collected, so we can't get it again.
+                currentMapSpriteData[(currentMapSpriteIndex) + MAP_SPRITE_DATA_POS_TYPE] = SPRITE_TYPE_OFFSCREEN;
+                currentMapSpritePersistance[playerOverworldPosition] |= bitToByte[lastPlayerSpriteCollisionId];
+                break;
+
             case SPRITE_TYPE_REGULAR_ENEMY:
             case SPRITE_TYPE_INVULNERABLE_ENEMY:
 
@@ -362,12 +374,13 @@ void handle_player_sprite_collision(void) {
                 playerHealth -= currentMapSpriteData[currentMapSpriteIndex + MAP_SPRITE_DATA_POS_DAMAGE]; 
                 // Since playerHealth is unsigned, we need to check for wraparound damage. 
                 // NOTE: If something manages to do more than 16 damage at once, this might fail.
-                if (playerHealth == 0 || playerHealth > 240) {
+                // if (playerHealth == 0 || playerHealth > 240) {
                     gameState = GAME_STATE_GAME_OVER;
                     music_stop();
                     sfx_play(SFX_GAMEOVER, SFX_CHANNEL_1);
                     return;
-                }
+                // }
+                /*
                 // Knock the player back
                 playerControlsLockTime = PLAYER_DAMAGE_CONTROL_LOCK_TIME;
                 playerInvulnerabilityTime = PLAYER_DAMAGE_INVULNERABILITY_TIME;
@@ -387,7 +400,7 @@ void handle_player_sprite_collision(void) {
                     playerXVelocity = 0 - playerXVelocity;
                 }
                 sfx_play(SFX_HURT, SFX_CHANNEL_2);
-
+                */
                 
                 break;
             case SPRITE_TYPE_DOOR: 

@@ -26,10 +26,19 @@ void draw_hud(void) {
         vram_put(0xec + i);
     }
 
+    /*
     vram_adr(NAMETABLE_A + HUD_HEART_START - 0x20 - 1);
     for (i = 0; i != 6; ++i)  {
         vram_put(0xea + i);
     }
+    */
+
+   vram_adr(NAMETABLE_A + HUD_HEART_START - 0x20);
+   vram_put(0xe2);
+   vram_put(0xee);
+   vram_put(0xe3);
+   vram_put(0xf1);
+
 }
 
 void update_hud(void) {
@@ -43,8 +52,9 @@ void update_hud(void) {
     // We use i for the index on screen buffer, so we don't have to shift things around
     // as we add values. 
     i = 0;
-    screenBuffer[i++] = MSB(NAMETABLE_A + HUD_HEART_START) | NT_UPD_HORZ;
-    screenBuffer[i++] = LSB(NAMETABLE_A + HUD_HEART_START);
+    screenBuffer[i++] = MSB(NAMETABLE_A + HUD_HEART_START+1) | NT_UPD_HORZ;
+    screenBuffer[i++] = LSB(NAMETABLE_A + HUD_HEART_START+1);
+    /*
     screenBuffer[i++] = playerMaxHealth;
     // Add one heart for every health the player has
     for (j = 0; j != playerHealth; ++j) {
@@ -54,6 +64,11 @@ void update_hud(void) {
     for (; j != playerMaxHealth; ++j) {
         screenBuffer[i++] = HUD_TILE_HEART_EMPTY;
     }
+    */
+   // TODO: If we're struggling, this is terrifyingly inefficient
+   screenBuffer[i++] = 2;
+   screenBuffer[i++] = (HUD_TILE_NUMBER) + ((playerGemCount) / 10);
+   screenBuffer[i++] = (HUD_TILE_NUMBER) + ((playerGemCount) % 10);
 
     // Next, draw the key count, using the key tile, and our key count variable
     screenBuffer[i++] = MSB(NTADR_A(25, 27)) | NT_UPD_HORZ;
