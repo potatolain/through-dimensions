@@ -25,6 +25,10 @@ A Ludum Dare 48 Compo game. Details later, if I don't run out of steam.
 
 All generated during the 48 hour compo, by me. Hence, they probably kinda stink.
 
+Some characters generated with [2BitCharacterGenerator](https://0x72.itch.io/2bitcharactergenerator) By 0x72.
+
+This thing is AWESOME for jams, seriously, check it out.
+
 # Contributing
 
 I don't have any set rules around contributions right now, and this is a quick-and-dirty Ludum Dare game.
