@@ -57,8 +57,8 @@ MAIN_EMULATOR=cmd /c start
 CONFIG_FILE_PATH=tools/cc65_config/game
 
 # These are the configuration files loaded by the line above. You probably don't have to change these.
-CONFIG_FILE=$(CONFIG_FILE_PATH).cfg
-CONFIG_ASM=$(CONFIG_FILE_PATH)_constants.asm
+CONFIG_FILE=$(CONFIG_FILE_PATH)_256k.cfg
+CONFIG_ASM=$(CONFIG_FILE_PATH)_256k_constants.asm
 
 # Path to 7-Zip - only used for generating tools zip. There's a 99.9% chance you don't care about this.
 7ZIP="/cygdrive/c/Program Files/7-Zip/7z"
