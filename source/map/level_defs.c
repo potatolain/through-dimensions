@@ -15,21 +15,21 @@
 
 CODE_BANK(PRG_BANK_LEVEL_DEFS);
 const unsigned char levelFirstScreens[] = {
-    0x01, 0x02, 0x08, 0x0a,
+    0x01, 0x02, 0x03, 0x0a,
     0x10, 0x24, 0x18, 0x1a,
     0x20, 0x34, 0x28, 0x2a,
     0x30, 0x24, 0x38, 0x3a
 };
 
 const unsigned char levelFirstDimensions[] = {
-    0x00, 0x00, 0x02, 0x00,
-    0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00
+    LAYER_NORMAL,    LAYER_NORMAL,    LAYER_DESERT,    LAYER_NORMAL,
+    LAYER_NORMAL,    LAYER_NORMAL,    LAYER_NORMAL,    LAYER_NORMAL,
+    LAYER_NORMAL,    LAYER_NORMAL,    LAYER_NORMAL,    LAYER_NORMAL,
+    LAYER_NORMAL,    LAYER_NORMAL,    LAYER_NORMAL,    LAYER_NORMAL
 };
 
 const unsigned char levelStartXPos[] = {
-    48, 23, 128, 128,
+    48, 24, 128, 128,
     128, 128, 128, 128,
     128, 128, 128, 128,
     128, 128, 128, 128
