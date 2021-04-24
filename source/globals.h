@@ -14,6 +14,14 @@ ZEROPAGE_EXTERN(unsigned char, playerHealth);
 ZEROPAGE_EXTERN(unsigned char, playerKeyCount);
 ZEROPAGE_EXTERN(unsigned char, playerMaxHealth);
 ZEROPAGE_EXTERN(unsigned char, currentWorldId);
+ZEROPAGE_EXTERN(unsigned char, currentLayer);
+
+#define LAYER_NORMAL 0
+#define LaYER_CALM 1
+#define LAYER_DESERT 2
+#define LAYER_STONE 3
+#define LAYER_DARKSTONE 4
+#define LAYER_DARKNESS 5
 
 ZEROPAGE_ARRAY_EXTERN(unsigned char, screenBuffer, 0x20);
 

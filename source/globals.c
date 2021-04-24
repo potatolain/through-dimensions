@@ -21,6 +21,8 @@ ZEROPAGE_DEF(unsigned char, everyOtherCycle);
 ZEROPAGE_DEF(unsigned char, controllerState);
 ZEROPAGE_DEF(unsigned char, lastControllerState);
 
+ZEROPAGE_DEF(unsigned char, currentLayer);
+
 ZEROPAGE_DEF(unsigned char, tempChar1);
 ZEROPAGE_DEF(unsigned char, tempChar2);
 ZEROPAGE_DEF(unsigned char, tempChar3);

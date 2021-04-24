@@ -19,6 +19,17 @@ void draw_hud(void) {
     for (i = 0; i != 16; ++i) {
         vram_put(0xff);
     }
+
+    vram_adr(NTADR_A(24, 26));
+    vram_put(0xf3);
+    for (i = 0; i != 4; ++i) {
+        vram_put(0xec + i);
+    }
+
+    vram_adr(NAMETABLE_A + HUD_HEART_START - 0x20 - 1);
+    for (i = 0; i != 6; ++i)  {
+        vram_put(0xea + i);
+    }
 }
 
 void update_hud(void) {
@@ -45,11 +56,12 @@ void update_hud(void) {
     }
 
     // Next, draw the key count, using the key tile, and our key count variable
-    screenBuffer[i++] = MSB(NAMETABLE_A + HUD_KEY_START) | NT_UPD_HORZ;
-    screenBuffer[i++] = LSB(NAMETABLE_A + HUD_KEY_START);
+    screenBuffer[i++] = MSB(NTADR_A(25, 27)) | NT_UPD_HORZ;
+    screenBuffer[i++] = LSB(NTADR_A(25, 27));
     screenBuffer[i++] = 2;
-    screenBuffer[i++] = HUD_TILE_KEY;
-    screenBuffer[i++] = HUD_TILE_NUMBER + playerKeyCount;
+    // FIXME: Draw layer names if we have the space
+    screenBuffer[i++] = HUD_TILE_NUMBER;
+    screenBuffer[i++] = HUD_TILE_NUMBER + currentLayer + 1;
 
 
     screenBuffer[i++] = NT_UPD_EOF;
