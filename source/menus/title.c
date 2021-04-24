@@ -20,9 +20,9 @@ void draw_title_screen(void) {
 	oam_clear();
 
     
-    put_str(NTADR_A(7, 5), gameName);
+    put_str(NTADR_A(7, 5), "Falling Deeper");
 	
-	put_str(NTADR_A(0, 24), "    Ludum Dare 48 Compo Entry   ");
+	put_str(NTADR_A(0, 24), "   A Ludum Dare 48 Compo Entry  ");
 	put_str(NTADR_A(0, 26), "     Theme: We must go deeper   ");
 	
 	put_str(NTADR_A(2, 28), "Copyright");
