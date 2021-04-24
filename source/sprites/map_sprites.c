@@ -36,6 +36,25 @@ ZEROPAGE_DEF(unsigned char, megaTemp);
 ZEROPAGE_DEF(unsigned char, lastPlayerSpriteCollisionId);
 ZEROPAGE_DEF(unsigned char, currentMapSpriteIndex);
 
+
+const unsigned char SPRITE_SPEED_MOVEMENT_LUT[] = {
+    // Format: spriteId->8 bytes
+    // 0-5: speed in dimension, 6-7 unused
+    // Normal, calm, desert, stone, dkstone, darkness
+    0x10, 0, 0x20, 0, 0, 0,             0, 0,
+    0, 0, 0x10, 0x20, 0x20, 0x40,       0, 0
+};
+
+
+const unsigned char SPRITE_DIMENSION_APPEARANCE_LUT[] = {
+    //format: spriteId->8 bytes
+    // 0-5: 0: hide, 1: show in this dimension. 6-7 unused
+    1, 1, 1, 0, 0, 0,       0, 0,
+    0, 0, 1, 1, 1, 1,       0, 0
+};
+
+
+
 // Forward definition of this method; code is at the bottom of this file. Ignore this for now!
 void do_sprite_movement_with_collision(void);
 
@@ -73,15 +92,20 @@ void update_map_sprites(void) {
 
         }
 
-
-        megaTemp = currentMapSpriteData[currentMapSpriteIndex + MAP_SPRITE_DATA_POS_TYPE];
+        megaTemp = currentMapSpriteData[currentMapSpriteIndex + MAP_SPRITE_DATA_POS_TYPE] ;
         if (
              megaTemp == SPRITE_TYPE_OFFSCREEN || 
             (
                 megaTemp == SPRITE_TYPE_TRANSITION && (
                     currentLayer != currentMapSpriteData[currentMapSpriteIndex + MAP_SPRITE_DATA_POS_HEALTH] && 
                     currentLayer != currentMapSpriteData[currentMapSpriteIndex + MAP_SPRITE_DATA_POS_MOVE_SPEED]
+                ) || (
+                    // FIXME: This doesn't work!! Need to rewrite this logic. We need the index off spriteDefinitions, which we don't have! Need another way...
+                    // Maybe we can reuse position 7/13 like we do with damage sprites?
+                    i == SPRITE_ID_GEM_DARK_TRANSFER && playerGemCount < TOTAL_GEMS
                 )
+            ) || (
+                megaTemp == SPRITE_TYPE_REGULAR_ENEMY && SPRITE_DIMENSION_APPEARANCE_LUT[(currentMapSpriteData[currentMapSpriteIndex + MAP_SPRITE_DATA_POS_DAMAGE] << 3) + currentLayer] == 0
             )
         ) {
             // Hide it and move on.
@@ -139,8 +163,12 @@ void update_map_sprites(void) {
             switch (currentMapSpriteData[currentMapSpriteIndex + MAP_SPRITE_DATA_POS_MOVEMENT_TYPE]) {
                 case SPRITE_MOVEMENT_LEFT_RIGHT:
                     // Get the speed to travel at
-                    currentSpriteData = currentMapSpriteData[currentMapSpriteIndex + MAP_SPRITE_DATA_POS_SLIDE_SPEED];
-
+                    // currentSpriteData = currentMapSpriteData[currentMapSpriteIndex + MAP_SPRITE_DATA_POS_SLIDE_SPEED];
+                    megaTemp = currentMapSpriteData[currentMapSpriteIndex + MAP_SPRITE_DATA_POS_SLIDE_SPEED] > 100; // isNegative
+                    currentSpriteData = SPRITE_SPEED_MOVEMENT_LUT[(currentMapSpriteData[currentMapSpriteIndex + MAP_SPRITE_DATA_POS_DAMAGE]<<3)+currentLayer];
+                    if (megaTemp) {
+                        currentSpriteData = 0 - currentSpriteData;
+                    }
                     // If it's positive, add to X to get the right of the sprite
                     if ((signed char) currentSpriteData > 0) {
                         sprX += currentSpriteFullTileCollisionWidth;
@@ -157,6 +185,12 @@ void update_map_sprites(void) {
 
                         // And... flip the direction!
                         currentMapSpriteData[currentMapSpriteIndex + MAP_SPRITE_DATA_POS_SLIDE_SPEED] = 0 - (signed char)currentSpriteData;
+
+                        if (currentMapSpriteData[currentMapSpriteIndex + MAP_SPRITE_DATA_POS_SLIDE_SPEED] > 128) {
+                            currentMapSpriteData[currentMapSpriteIndex + MAP_SPRITE_DATA_POS_CURRENT_DIRECTION] = SPRITE_DIRECTION_LEFT;
+                        } else {
+                            currentMapSpriteData[currentMapSpriteIndex + MAP_SPRITE_DATA_POS_CURRENT_DIRECTION] = SPRITE_DIRECTION_RIGHT;
+                        }
                     } else {
                         // No collision! Roll back our change to pick right of the sprite
                         if ((signed char) currentSpriteData > 0) {
@@ -172,7 +206,12 @@ void update_map_sprites(void) {
                     break;
                 case SPRITE_MOVEMENT_UP_DOWN:
                     // Get the speed to travel at
-                    currentSpriteData = currentMapSpriteData[currentMapSpriteIndex + MAP_SPRITE_DATA_POS_SLIDE_SPEED];
+                    // currentSpriteData = currentMapSpriteData[currentMapSpriteIndex + MAP_SPRITE_DATA_POS_SLIDE_SPEED];
+                    megaTemp = currentMapSpriteData[currentMapSpriteIndex + MAP_SPRITE_DATA_POS_SLIDE_SPEED] > 100; // isNegative
+                    currentSpriteData = SPRITE_SPEED_MOVEMENT_LUT[(currentMapSpriteData[currentMapSpriteIndex + MAP_SPRITE_DATA_POS_DAMAGE]<<3)+currentLayer];
+                    if (megaTemp) {
+                        currentSpriteData = 0 - currentSpriteData;
+                    }
 
                     // If it's positive, add to X to get the right of the sprite
                     if ((signed char) currentSpriteData > 0) {
@@ -190,6 +229,12 @@ void update_map_sprites(void) {
 
                         // And... flip the direction!
                         currentMapSpriteData[currentMapSpriteIndex + MAP_SPRITE_DATA_POS_SLIDE_SPEED] = 0 - (signed char)currentSpriteData;
+
+                        if (currentMapSpriteData[currentMapSpriteIndex + MAP_SPRITE_DATA_POS_SLIDE_SPEED] > 128) {
+                            currentMapSpriteData[currentMapSpriteIndex + MAP_SPRITE_DATA_POS_CURRENT_DIRECTION] = SPRITE_DIRECTION_UP;
+                        } else {
+                            currentMapSpriteData[currentMapSpriteIndex + MAP_SPRITE_DATA_POS_CURRENT_DIRECTION] = SPRITE_DIRECTION_DOWN;
+                        }
                     } else {
                         // No collision! Roll back our change to pick right of the sprite
                         if ((signed char) currentSpriteData > 0) {
@@ -321,7 +366,12 @@ void update_map_sprites(void) {
 void do_sprite_movement_with_collision(void) {
     // Set currentSpriteData to the sprite speed for now (NOTE: we overwrite this after the switch statement)
     // We'll then add/subtract it from sprX and sprY
-    currentSpriteData = currentMapSpriteData[currentMapSpriteIndex + MAP_SPRITE_DATA_POS_MOVE_SPEED];
+    // currentSpriteData = currentMapSpriteData[currentMapSpriteIndex + MAP_SPRITE_DATA_POS_MOVE_SPEED];
+    megaTemp = currentMapSpriteData[currentMapSpriteIndex + MAP_SPRITE_DATA_POS_MOVE_SPEED] > 100; // isNegative
+    currentSpriteData = SPRITE_SPEED_MOVEMENT_LUT[(currentMapSpriteData[currentMapSpriteIndex + MAP_SPRITE_DATA_POS_DAMAGE]<<3)+currentLayer];
+    if (megaTemp) {
+        currentSpriteData = 0 - currentSpriteData;
+    }
     switch (currentMapSpriteData[currentMapSpriteIndex + MAP_SPRITE_DATA_POS_CURRENT_DIRECTION]) {
         case SPRITE_DIRECTION_LEFT:
 

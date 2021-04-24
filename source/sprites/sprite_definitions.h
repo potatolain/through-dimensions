@@ -71,3 +71,7 @@
 
 extern const unsigned char spriteDefinitions[];
 
+
+#define SPRITE_ID_GEM_DARK_TRANSFER 15
+#define DIM_SPRITE_ID_BLUEBALL 0
+#define DIM_SPRITE_ID_REDBALL 1

@@ -27,6 +27,8 @@ ZEROPAGE_EXTERN(unsigned char, playerGemCount);
 
 #define STAGE_COUNT 10
 
+#define DEBUG 1
+
 ZEROPAGE_ARRAY_EXTERN(unsigned char, screenBuffer, 0x20);
 
 ZEROPAGE_EXTERN(unsigned char, controllerState);

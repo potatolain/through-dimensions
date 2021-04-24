@@ -29,7 +29,6 @@ unsigned char currentMapSpritePersistance[64];
 
 unsigned char mapScreenBuffer[0x55];
 
-
 void init_map(void) {
     // Make sure we're looking at the right sprite and chr data, not the ones for the menu.
     //set_chr_bank_0(CHR_BANK_TILES);

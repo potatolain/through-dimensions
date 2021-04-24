@@ -91,6 +91,12 @@ void handle_player_movement(void) {
     lastControllerState = controllerState;
     controllerState = pad_poll(0);
 
+    if (DEBUG && controllerState & PAD_SELECT && !(lastControllerState & PAD_SELECT)) {
+        ++currentStageId;
+        gameState = GAME_STATE_NEXT_LEVEL;
+        return;
+    }
+
     // If Start is pressed now, and was not pressed before...
     if (controllerState & PAD_START && !(lastControllerState & PAD_START)) {
         gameState = GAME_STATE_PAUSED;

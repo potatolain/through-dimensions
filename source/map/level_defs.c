@@ -9,41 +9,49 @@
 #include "source/graphics/palettes.h"
 
 #include "graphics/screen_firstlev.h"
+#include "graphics/screen_secondlev.h"
+#include "graphics/screen_gohome.h"
+#include "graphics/screen_whereends.h"
 
 CODE_BANK(PRG_BANK_LEVEL_DEFS);
 const unsigned char levelFirstScreens[] = {
-    0x01, 0x04, 0x08, 0x0a,
+    0x01, 0x02, 0x08, 0x0a,
     0x10, 0x24, 0x18, 0x1a,
     0x20, 0x34, 0x28, 0x2a,
     0x30, 0x24, 0x38, 0x3a
 };
 
 const unsigned char levelFirstDimensions[] = {
-    0x00, 0x02, 0x00, 0x00,
+    0x00, 0x00, 0x02, 0x00,
     0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00
 };
 
 const unsigned char levelStartXPos[] = {
-    48, 128, 128, 128,
+    48, 23, 128, 128,
     128, 128, 128, 128,
     128, 128, 128, 128,
     128, 128, 128, 128
 };
 
 const unsigned char levelStartYPos[] = {
-    72, 128, 128, 128,
+    72, 64, 128, 128,
     128, 128, 128, 128,
     128, 128, 128, 128,
     128, 128, 128, 128
 };
 
 const unsigned char* LEVEL_INTRO_SCREEN[] = {
-    0, screen_firstlev, 0, 0, 
+    0, screen_firstlev, screen_secondlev, 0, 
     0, 0, 0, 0,
     0, 0, 0, 0,
     0, 0, 0, 0,
+
+
+    // Homeless, rehome us please!
+    screen_gohome,
+    screen_whereends
 };
 
 void load_level(void) {

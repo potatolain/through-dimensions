@@ -32,6 +32,11 @@ void draw_title_screen(void) {
 	put_str(NTADR_A(17, 28), "@cppchriscpp");
 
 	put_str(NTADR_A(10, 16), "Press Start!");
+
+
+	if (DEBUG) {
+		put_str(NTADR_A(2, 2), "DEBUG MODE ON");
+	}	
 	ppu_on_all();
 
 	gameState = GAME_STATE_TITLE_INPUT;

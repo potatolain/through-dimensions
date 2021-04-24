@@ -68,6 +68,8 @@ void main(void) {
                 break;
             case GAME_STATE_NEXT_LEVEL:
                 // TODO: Anything special to do here?
+                game_over_restart:
+                oam_clear();
             case GAME_STATE_POST_TITLE:
 
                 fade_out();
@@ -78,7 +80,9 @@ void main(void) {
                     music_stop();
                 }
 
-                banked_call(PRG_BANK_LEVEL_DEFS, draw_level_intro);
+                if (gameState != GAME_STATE_GAME_OVER) {
+                    banked_call(PRG_BANK_LEVEL_DEFS, draw_level_intro);
+                }
 
                 banked_call(PRG_BANK_LEVEL_DEFS, load_level);
 
@@ -109,6 +113,7 @@ void main(void) {
                 // FIXME: Sound
                 ppu_off();
                 pal_bg(&layerPalettes[currentLayer<<4]);
+                oam_clear(); // reset sprites
                 ppu_on_all();
                 fade_in();
                 gameState = GAME_STATE_RUNNING;
@@ -161,7 +166,7 @@ void main(void) {
                 banked_call(PRG_BANK_GAME_OVER, draw_game_over_screen);
                 fade_in();
                 banked_call(PRG_BANK_MENU_INPUT_HELPERS, wait_for_start);
-                gameState = GAME_STATE_NEXT_LEVEL;
+                goto game_over_restart;
                 break;
             case GAME_STATE_CREDITS:
                 music_stop();
