@@ -22,6 +22,7 @@ This has the main loop for the game, which is then used to call out to other cod
 #include "source/menus/input_helpers.h"
 #include "source/menus/game_over.h"
 #include "source/map/level_defs.h"
+#include "source/graphics/palettes.h"
 
 
 // Method to set a bunch of variables to default values when the system starts up.
@@ -87,6 +88,7 @@ void main(void) {
                 
                 // The draw map methods handle turning the ppu on/off, but we weren't quite done yet. Turn it back off.
                 ppu_off();
+                pal_bg(&layerPalettes[currentLayer<<4]);
                 banked_call(PRG_BANK_HUD, draw_hud);
                 ppu_on_all();
 
@@ -102,7 +104,12 @@ void main(void) {
                 break;
 
             case GAME_STATE_TRANSITION:
-                // FIXME: do something
+                fade_out();
+                // FIXME: Sound
+                ppu_off();
+                pal_bg(&layerPalettes[currentLayer<<4]);
+                ppu_on_all();
+                fade_in();
                 gameState = GAME_STATE_RUNNING;
                 break;
             case GAME_STATE_RUNNING:

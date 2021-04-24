@@ -13,7 +13,15 @@ _mainBgPalette:
 _mainSpritePalette: 
     .incbin "graphics/palettes/main_sprite.pal"
 
+_layerPalettes:
+    .incbin "graphics/layers/normal.pal"
+    .incbin "graphics/layers/calm.pal"
+    .incbin "graphics/layers/desert.pal"
+    .incbin "graphics/layers/stone.pal"
+    .incbin "graphics/layers/darkstone.pal"
+    .incbin "graphics/layers/darkness.pal"
+
 ; The .export command tells our assembler that these are meant to be available to C. So does the name...
 ; both do that. There's more complex details, but if I'm honest I don't know them myself, so I can't document
 ; them here.
-.export _titlePalette, _errorPalette, _mainBgPalette, _mainSpritePalette
+.export _titlePalette, _errorPalette, _mainBgPalette, _mainSpritePalette, _layerPalettes
