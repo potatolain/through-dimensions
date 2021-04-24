@@ -78,12 +78,9 @@ void main(void) {
                     music_stop();
                 }
 
-                playerOverworldPosition = levelFirstScreens[currentStageId];
-                load_map();
-                playerXPosition = levelStartXPos[currentStageId] << PLAYER_POSITION_SHIFT;
-                playerYPosition = levelStartYPos[currentStageId] << PLAYER_POSITION_SHIFT;
-                currentLayer = levelFirstDimensions[currentStageId];
-                banked_call(PRG_BANK_PLAYER_SPRITE, update_player_sprite);
+                banked_call(PRG_BANK_LEVEL_DEFS, draw_level_intro);
+
+                banked_call(PRG_BANK_LEVEL_DEFS, load_level);
 
                 banked_call(PRG_BANK_MAP_LOGIC, draw_current_map_to_a);
                 banked_call(PRG_BANK_MAP_LOGIC, init_map);
@@ -92,6 +89,7 @@ void main(void) {
                 // The draw map methods handle turning the ppu on/off, but we weren't quite done yet. Turn it back off.
                 ppu_off();
                 pal_bg(&layerPalettes[currentLayer<<4]);
+                set_chr_bank_0(CHR_BANK_TILES);
                 banked_call(PRG_BANK_HUD, draw_hud);
                 ppu_on_all();
 
@@ -149,6 +147,9 @@ void main(void) {
                 // The draw map methods handle turning the ppu on/off, but we weren't quite done yet. Turn it back off.
                 ppu_off();
                 banked_call(PRG_BANK_HUD, draw_hud);
+                pal_bg(&layerPalettes[currentLayer<<4]);
+                set_chr_bank_0(CHR_BANK_TILES);
+
                 ppu_on_all();
                 fade_in();
 
