@@ -5,6 +5,7 @@
         "/bin/bash"
     ],
     "files.associations": {
-        "sprite_definitions.h": "c"
+        "sprite_definitions.h": "c",
+        "system_constants.h": "c"
     }
 }

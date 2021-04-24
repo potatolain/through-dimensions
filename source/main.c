@@ -72,6 +72,9 @@ void main(void) {
 
                 fade_out();
                 if (gameState == GAME_STATE_POST_TITLE) {
+                    draw_post_title();
+                    banked_call(PRG_BANK_MENU_INPUT_HELPERS, wait_for_start);
+                    fade_out();
                     music_stop();
                 }
 

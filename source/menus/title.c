@@ -6,6 +6,8 @@
 #include "source/menus/text_helpers.h"
 #include "source/graphics/palettes.h"
 #include "source/configuration/game_info.h"
+#include "graphics/intro.h"
+#include "source/graphics/fade_animation.h"
 
 CODE_BANK(PRG_BANK_TITLE);
 
@@ -39,4 +41,14 @@ void handle_title_input(void) {
 	if (pad_trigger(0) & PAD_START) {
 		gameState = GAME_STATE_POST_TITLE;
 	}
+}
+
+void draw_post_title(void) {
+	ppu_off();
+
+	vram_adr(0x2000);
+	vram_unrle(intro);
+
+	ppu_on_all();
+	fade_in();
 }
