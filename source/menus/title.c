@@ -22,11 +22,12 @@ void draw_title_screen(void) {
     
     put_str(NTADR_A(7, 5), gameName);
 	
-	put_str(NTADR_A(2, 26), gameAuthorContact);
+	put_str(NTADR_A(0, 24), "    Ludum Dare 48 Compo Entry   ");
+	put_str(NTADR_A(0, 26), "     Theme: We must go deeper   ");
 	
 	put_str(NTADR_A(2, 28), "Copyright");
-	put_str(NTADR_A(12, 28), currentYear);
-	put_str(NTADR_A(17, 28), gameAuthor);
+	put_str(NTADR_A(12, 28), "2021");
+	put_str(NTADR_A(17, 28), "@cppchriscpp");
 
 	put_str(NTADR_A(10, 16), "Press Start!");
 	ppu_on_all();
