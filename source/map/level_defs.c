@@ -12,6 +12,7 @@
 #include "graphics/screen_secondlev.h"
 #include "graphics/screen_gohome.h"
 #include "graphics/screen_whereends.h"
+#include "graphics/screen_gems.h"
 
 CODE_BANK(PRG_BANK_LEVEL_DEFS);
 const unsigned char levelFirstScreens[] = {
@@ -51,7 +52,8 @@ const unsigned char* LEVEL_INTRO_SCREEN[] = {
 
     // Homeless, rehome us please!
     screen_gohome,
-    screen_whereends
+    screen_whereends,
+    screen_gems
 };
 
 void load_level(void) {
