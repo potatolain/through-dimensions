@@ -283,6 +283,9 @@ void __fastcall__ wait_for_sprite0_hit(void);
 #define MASK_BG			0x08
 #define MASK_EDGE_SPR	0x04
 #define MASK_EDGE_BG	0x02
+#define MASK_DARKEN     0xe0
+#define MASK_LIGHTEN    0x00
+#define MASK_DARKEN_MASK 0xe0
 
 #define NAMETABLE_A		0x2000
 #define NAMETABLE_B		0x2400

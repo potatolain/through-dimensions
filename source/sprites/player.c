@@ -321,6 +321,7 @@ void test_player_tile_collision(void) {
 
 void handle_player_sprite_collision(void) {
     // We store the last sprite hit when we update the sprites in `map_sprites.c`, so here all we have to do is react to it.
+    ppu_mask((ppuMask & 0x1f));
     if (lastPlayerSpriteCollisionId != NO_SPRITE_HIT) {
         currentMapSpriteIndex = lastPlayerSpriteCollisionId<<MAP_SPRITE_DATA_SHIFT;
         switch (currentMapSpriteData[(currentMapSpriteIndex) + MAP_SPRITE_DATA_POS_TYPE]) {
@@ -428,6 +429,7 @@ void handle_player_sprite_collision(void) {
                 break;
 
             case SPRITE_TYPE_TRANSITION:
+                ppu_mask(ppuMask | MASK_DARKEN_MASK);
                 if (controllerState & PAD_A && !(lastControllerState & PAD_A)) {
                     if (currentLayer == currentMapSpriteData[currentMapSpriteIndex + MAP_SPRITE_DATA_POS_HEALTH]) {
                         currentLayer = currentMapSpriteData[currentMapSpriteIndex + MAP_SPRITE_DATA_POS_MOVE_SPEED];

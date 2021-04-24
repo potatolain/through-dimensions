@@ -21,7 +21,7 @@ FT_SFX_STREAMS			= 4			;number of sound effects played at once, 1..4
 	.import NES_PRG_BANKS,NES_CHR_BANKS
     .include "tools/cc65/asminc/zeropage.inc"
 
-	.export _frameCount
+	.export _frameCount, _ppuMask
 
 
 
@@ -73,6 +73,7 @@ PAD_STATEP: 		.res 2
 PAD_STATET: 		.res 2
 PPU_CTRL_VAR: 		.res 1
 PPU_CTRL_VAR1: 		.res 1
+_ppuMask:
 PPU_MASK_VAR: 		.res 1
 RAND_SEED: 			.res 2
 BP_BANK:            .res 1
