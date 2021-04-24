@@ -6,6 +6,7 @@
 #include "source/configuration/game_states.h"
 #include "source/menus/text_helpers.h"
 #include "source/menus/input_helpers.h"
+#include "graphics/game_over.h"
 
 CODE_BANK(PRG_BANK_GAME_OVER);
 
@@ -21,8 +22,8 @@ void draw_game_over_screen(void) {
 	set_chr_bank_0(CHR_BANK_MENU);
     set_chr_bank_1(CHR_BANK_MENU);
 
-    // Just write "- Paused -" on the screen... there's plenty of nicer things you could do if you wanna spend time!
-    put_str(NTADR_A(11, 13), "Game Over");
+    vram_adr(0x2000);
+    vram_unrle(game_over);
 
 
 
