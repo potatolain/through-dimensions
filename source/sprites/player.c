@@ -438,7 +438,12 @@ void handle_player_sprite_collision(void) {
                 }
                 break;
             case SPRITE_TYPE_ENDGAME:
-                gameState = GAME_STATE_CREDITS;
+                ++currentStageId;
+                if (currentStageId > STAGE_COUNT) {
+                    gameState = GAME_STATE_CREDITS;
+                } else { 
+                    gameState = GAME_STATE_NEXT_LEVEL;
+                }
                 break;
             case SPRITE_TYPE_NPC:
                 // Okay, we collided with this NPC before we calculated the player's movement. After being moved, does the 

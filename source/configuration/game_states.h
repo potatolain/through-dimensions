@@ -10,4 +10,7 @@
 #define GAME_STATE_SCREEN_SCROLL    150
 #define GAME_STATE_GAME_OVER        201
 #define GAME_STATE_CREDITS          250
+
+
 #define GAME_STATE_TRANSITION       70
+#define GAME_STATE_NEXT_LEVEL       71

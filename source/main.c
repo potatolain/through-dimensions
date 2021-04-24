@@ -21,6 +21,7 @@ This has the main loop for the game, which is then used to call out to other cod
 #include "source/sprites/sprite_definitions.h"
 #include "source/menus/input_helpers.h"
 #include "source/menus/game_over.h"
+#include "source/map/level_defs.h"
 
 
 // Method to set a bunch of variables to default values when the system starts up.
@@ -64,11 +65,21 @@ void main(void) {
             case GAME_STATE_TITLE_INPUT:
                 banked_call(PRG_BANK_TITLE, handle_title_input);
                 break;
+            case GAME_STATE_NEXT_LEVEL:
+                // TODO: Anything special to do here?
             case GAME_STATE_POST_TITLE:
 
-                music_stop();
                 fade_out();
+                if (gameState == GAME_STATE_POST_TITLE) {
+                    music_stop();
+                }
+
+                playerOverworldPosition = levelFirstScreens[currentStageId];
                 load_map();
+                playerXPosition = levelStartXPos[currentStageId] << PLAYER_POSITION_SHIFT;
+                playerYPosition = levelStartYPos[currentStageId] << PLAYER_POSITION_SHIFT;
+                currentLayer = levelFirstDimensions[currentStageId];
+                banked_call(PRG_BANK_PLAYER_SPRITE, update_player_sprite);
 
                 banked_call(PRG_BANK_MAP_LOGIC, draw_current_map_to_a);
                 banked_call(PRG_BANK_MAP_LOGIC, init_map);
@@ -80,7 +91,9 @@ void main(void) {
                 ppu_on_all();
 
                 // Seed the random number generator here, using the time since console power on as a seed
-                set_rand(frameCount);
+                if (gameState == GAME_STATE_POST_TITLE) { // VS being dumped here at level swap. Be nice to speedrunners/etc
+                    set_rand(frameCount);
+                }
                 
                 // Map drawing is complete; let the player play the game!
                 music_play(SONG_OVERWORLD);

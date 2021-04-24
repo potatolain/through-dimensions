@@ -1,0 +1,27 @@
+const unsigned char levelFirstScreens[] = {
+    0x00, 0x04, 0x08, 0x0a,
+    0x10, 0x24, 0x18, 0x1a,
+    0x20, 0x34, 0x28, 0x2a,
+    0x30, 0x24, 0x38, 0x3a
+};
+
+const unsigned char levelFirstDimensions[] = {
+    0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00
+};
+
+const unsigned char levelStartXPos[] = {
+    128, 128, 128, 128,
+    128, 128, 128, 128,
+    128, 128, 128, 128,
+    128, 128, 128, 128
+};
+
+const unsigned char levelStartYPos[] = {
+    128, 128, 128, 128,
+    128, 128, 128, 128,
+    128, 128, 128, 128,
+    128, 128, 128, 128
+};
