@@ -15,8 +15,11 @@
 #include "graphics/screen_gems.h"
 
 CODE_BANK(PRG_BANK_LEVEL_DEFS);
+
+#define FORCE_LEVEL 3
+
 const unsigned char levelFirstScreens[] = {
-    0x01, 0x02, 0x03, 0x0a,
+    0x01, 0x02, 0x03, 0x04,
     0x10, 0x24, 0x18, 0x1a,
     0x20, 0x34, 0x28, 0x2a,
     0x30, 0x24, 0x38, 0x3a
@@ -30,14 +33,14 @@ const unsigned char levelFirstDimensions[] = {
 };
 
 const unsigned char levelStartXPos[] = {
-    48, 24, 128, 128,
+    48, 24, 128, 24,
     128, 128, 128, 128,
     128, 128, 128, 128,
     128, 128, 128, 128
 };
 
 const unsigned char levelStartYPos[] = {
-    72, 64, 128, 128,
+    72, 64, 128, 112,
     128, 128, 128, 128,
     128, 128, 128, 128,
     128, 128, 128, 128
@@ -67,6 +70,10 @@ void load_level(void) {
 }
 
 void draw_level_intro(void) {
+    #if DEBUG && FORCE_LEVEL != 0
+        currentStageId = FORCE_LEVEL;
+    #endif
+
     if (LEVEL_INTRO_SCREEN[currentStageId] != 0) {
         oam_clear();
         ppu_off();
