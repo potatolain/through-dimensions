@@ -17,7 +17,7 @@
 CODE_BANK(PRG_BANK_LEVEL_DEFS);
 
 // Set to 0 for normal gameplay
-#define FORCE_LEVEL 16
+#define FORCE_LEVEL 3
 
 const unsigned char levelFirstScreens[] = {
     0x01, 0x02, 0x03, 0x04,

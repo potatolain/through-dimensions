@@ -350,8 +350,9 @@ void update_map_sprites(void) {
 
             // For 16x16 enemy sprites, make their hitbox a bit smaller
             if (currentSpriteType == SPRITE_TYPE_REGULAR_ENEMY || currentSpriteType == SPRITE_TYPE_INVULNERABLE_ENEMY) {
-                sprX -= SPRITE_HITBOX_OFFSET;
-                sprY -= SPRITE_HITBOX_OFFSET;
+                sprX += SPRITE_HITBOX_OFFSET;
+                sprY += SPRITE_HITBOX_OFFSET;
+                currentSpriteFullWidth -= SPRITE_HITBOX_OFFSET*2;
             }
 
             // Collision test... see here for a clear explanation: https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
