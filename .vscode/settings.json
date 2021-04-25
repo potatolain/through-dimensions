@@ -6,6 +6,7 @@
     ],
     "files.associations": {
         "sprite_definitions.h": "c",
-        "system_constants.h": "c"
+        "system_constants.h": "c",
+        "input_helpers.h": "c"
     }
 }

@@ -57,12 +57,16 @@
 #define SONG_OVERWORLD 1
 
 // Constants for sound effects we play in the game
-#define SFX_HURT 0
-#define SFX_HEART 1
-#define SFX_KEY 2
+#define SFX_HURT 3
+#define SFX_HEART 0
+#define SFX_KEY 0
 #define SFX_GAMEOVER 3
-#define SFX_WIN 4
-#define SFX_GEM 2
+#define SFX_WIN 2
+#define SFX_GEM 1
+#define SFX_TRANSITION_SPACE 4
+#define SFX_TRANSITION 0
+#define SFX_PAUSE_UP 5
+#define SFX_PAUSE_DOWN 6
 
 // Constants for sfx channels. Completely unnecessary but it's easier to read
 #define SFX_CHANNEL_1 0

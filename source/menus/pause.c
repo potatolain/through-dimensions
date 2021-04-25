@@ -34,5 +34,6 @@ void draw_pause_screen(void) {
 
 void handle_pause_input(void) {
     banked_call(PRG_BANK_MENU_INPUT_HELPERS, wait_for_start);
+    sfx_play(SFX_PAUSE_DOWN, SFX_CHANNEL_1);
     gameState = GAME_STATE_RUNNING;
 }

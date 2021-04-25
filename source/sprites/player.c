@@ -94,11 +94,13 @@ void handle_player_movement(void) {
     if (DEBUG && controllerState & PAD_SELECT && !(lastControllerState & PAD_SELECT)) {
         ++currentStageId;
         gameState = GAME_STATE_NEXT_LEVEL;
+        sfx_play(SFX_WIN, SFX_CHANNEL_1);
         return;
     }
 
     // If Start is pressed now, and was not pressed before...
     if (controllerState & PAD_START && !(lastControllerState & PAD_START)) {
+        sfx_play(SFX_PAUSE_UP, SFX_CHANNEL_1);
         gameState = GAME_STATE_PAUSED;
         return;
     }
@@ -455,7 +457,10 @@ void handle_player_sprite_collision(void) {
                     } else {
                         currentLayer = currentMapSpriteData[currentMapSpriteIndex + MAP_SPRITE_DATA_POS_HEALTH];
                     }
+                    sfx_play(SFX_TRANSITION, SFX_CHANNEL_3);
                     gameState = GAME_STATE_TRANSITION;
+                } else if ((frameCount & 0x04) == 0x04) {
+                    sfx_play(SFX_TRANSITION_SPACE, SFX_CHANNEL_4);
                 }
                 break;
             case SPRITE_TYPE_ENDGAME:
@@ -464,6 +469,7 @@ void handle_player_sprite_collision(void) {
                     gameState = GAME_STATE_CREDITS;
                 } else { 
                     gameState = GAME_STATE_NEXT_LEVEL;
+                    sfx_play(SFX_WIN, SFX_CHANNEL_1);
                 }
                 break;
             case SPRITE_TYPE_NPC:

@@ -69,6 +69,7 @@ void main(void) {
             case GAME_STATE_NEXT_LEVEL:
                 // TODO: Anything special to do here?
                 game_over_restart:
+
                 oam_clear();
             case GAME_STATE_POST_TITLE:
 
@@ -110,7 +111,6 @@ void main(void) {
 
             case GAME_STATE_TRANSITION:
                 fade_out();
-                // FIXME: Sound
                 ppu_off();
                 pal_bg(&layerPalettes[currentLayer<<4]);
                 oam_clear(); // reset sprites
@@ -164,6 +164,7 @@ void main(void) {
 
                 // Draw the "you lose" screen
                 banked_call(PRG_BANK_GAME_OVER, draw_game_over_screen);
+                delay(30);
                 fade_in();
                 banked_call(PRG_BANK_MENU_INPUT_HELPERS, wait_for_start);
                 goto game_over_restart;

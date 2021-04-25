@@ -73,5 +73,10 @@ extern const unsigned char spriteDefinitions[];
 
 
 #define SPRITE_ID_GEM_DARK_TRANSFER 15
+
 #define DIM_SPRITE_ID_BLUEBALL 0
 #define DIM_SPRITE_ID_REDBALL 1
+#define DIM_SPRITE_ID_VOLCANO 2
+#define DIM_SPRITE_ID_TIMECOP 3
+#define DIM_SPRITE_ID_HYPER_TIMECOP 4
+#define DIM_SPRITE_ID_MADMAN 5
