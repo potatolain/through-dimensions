@@ -24,6 +24,8 @@ This has the main loop for the game, which is then used to call out to other cod
 #include "source/map/level_defs.h"
 #include "source/graphics/palettes.h"
 
+ZEROPAGE_DEF(unsigned char, currentSong);
+
 
 // Method to set a bunch of variables to default values when the system starts up.
 // Note that if variables aren't set in this method, they will start at 0 on NES startup.
@@ -40,6 +42,7 @@ void initialize_variables(void) {
 
     currentWorldId = WORLD_OVERWORLD; // The ID of the world to load.
     currentLayer = 0;
+    currentSong = 255;
     
     // Little bit of generic initialization below this point - we need to set
     // The system up to use a different hardware bank for sprites vs backgrounds.
@@ -61,6 +64,7 @@ void main(void) {
             case GAME_STATE_TITLE_DRAW:
                 banked_call(PRG_BANK_TITLE, draw_title_screen);
                 music_play(SONG_TITLE);
+                currentSong = 255;
                 fade_in();
                 break;
             case GAME_STATE_TITLE_INPUT:
@@ -81,7 +85,8 @@ void main(void) {
                     banked_call(PRG_BANK_MENU_INPUT_HELPERS, wait_for_start);
                     sfx_play(SFX_CONFIRM, SFX_CHANNEL_1);
                     fade_out();
-                    music_stop();
+                    // FIXME: Did this mess up music?
+                    //music_stop();
                 }
 
                 if (gameState != GAME_STATE_GAME_OVER) {
@@ -110,7 +115,10 @@ void main(void) {
                 }
                 
                 // Map drawing is complete; let the player play the game!
-                music_play(SONG_VARIANCE + currentLayer);
+                if (currentSong != currentLayer) {
+                    music_play(SONG_VARIANCE + currentLayer);
+                    currentSong = currentLayer;
+                }
                 fade_in();
                 gameState = GAME_STATE_RUNNING;
                 break;
@@ -122,7 +130,10 @@ void main(void) {
                 set_chr_bank_0(4 + currentLayer);
                 oam_clear(); // reset sprites
                 ppu_on_all();
-                music_play(SONG_VARIANCE + currentLayer);
+                if (currentSong != currentLayer) {
+                    music_play(SONG_VARIANCE + currentLayer);
+                    currentSong = currentLayer;
+                }
                 fade_in();
                 gameState = GAME_STATE_RUNNING;
                 break;

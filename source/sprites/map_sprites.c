@@ -46,7 +46,7 @@ const unsigned char SPRITE_SPEED_MOVEMENT_LUT[] = {
     0, 0, 0x18, 0x30, 0x30, 0x40,          0, 0, // Volcano
     0x20, 0x20, 0x20, 0x20, 0x20, 0,    0, 0, // Timecop
     0x40, 0x40, 0x40, 0x40, 0x40, 0,    0, 0, // Hyper timecop
-    0, 0, 0, 0, 0x38, 0x48,             0, 0  // Madman
+    0, 0, 0, 0, 0, 0x48,             0, 0  // Madman
 };
 
 
@@ -58,7 +58,7 @@ const unsigned char SPRITE_DIMENSION_APPEARANCE_LUT[] = {
     0, 0, 1, 1, 1, 1,       0, 0, // Volcano
     1, 1, 1, 1, 1, 0,       0, 0, // Timecop
     1, 1, 1, 1, 1, 0,       0, 0, // Hyper Timecop
-    0, 0, 0, 0, 1, 1,       0, 0  // Madman
+    0, 0, 0, 0, 0, 1,       0, 0  // Madman
 };
 
 
@@ -114,6 +114,13 @@ void update_map_sprites(void) {
                 )
             ) || (
                 megaTemp == SPRITE_TYPE_REGULAR_ENEMY && SPRITE_DIMENSION_APPEARANCE_LUT[(currentMapSpriteData[currentMapSpriteIndex + MAP_SPRITE_DATA_POS_DAMAGE] << 3) + currentLayer] == 0
+            ) || (
+                playerOverworldPosition == 1 && 
+                megaTemp == SPRITE_TYPE_TRANSITION && 
+                currentMapSpriteData[currentMapSpriteIndex + MAP_SPRITE_DATA_POS_DAMAGE] == LAYER_NORMAL && 
+                currentLayer == LAYER_CALM &&
+                currentMapSpriteData[currentMapSpriteIndex + MAP_SPRITE_DATA_POS_X+1] < 10
+                
             )
         ) {
             // Hide it and move on.

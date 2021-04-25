@@ -28,9 +28,9 @@ extern unsigned char goodEnding;
 #define LAYER_DARKSTONE 4
 #define LAYER_DARKNESS 5
 
-#define STAGE_COUNT 16
+#define STAGE_COUNT 13
 
-#define DEBUG 1
+#define DEBUG 0
 
 ZEROPAGE_ARRAY_EXTERN(unsigned char, screenBuffer, 0x20);
 
