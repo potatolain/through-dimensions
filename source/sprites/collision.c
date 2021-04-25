@@ -33,9 +33,16 @@ unsigned char test_collision(unsigned char tileId, unsigned char isPlayer) {
         case 36: // vine bridge
         case 37: // ditto
             return currentLayer == LAYER_NORMAL || currentLayer == LAYER_DESERT || currentLayer > LAYER_STONE;
-        // Else continue and use default logic
         case 38: // Otherworld tiles
             return 0;
+        case 39: // Desert tile
+            return currentLayer >= LAYER_DESERT ? 1 : 0;
+        case 40: // Brikx
+            return currentLayer == LAYER_CALM ? 0 : 1;
+
+
+        // Else continue and use default logic
+
     }
 
     if (collisionTemp >= FIRST_SOLID_SPRITE && collisionTemp <= LAST_SOLID_SPRITE) {

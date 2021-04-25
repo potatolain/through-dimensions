@@ -42,8 +42,8 @@ const unsigned char SPRITE_SPEED_MOVEMENT_LUT[] = {
     // 0-5: speed in dimension, 6-7 unused
     // Normal, calm, desert, stone, dkstone, darkness
     0x10, 0x0a, 0x20, 0, 0, 0,          0, 0, // Blue Ball
-    0, 0, 0x10, 0x20, 0x20, 0x40,       0, 0, // Red ball
-    0, 0, 0, 0x18, 0x30, 0x40,          0, 0, // Volcano
+    0, 0, 0x20, 0x20, 0x20, 0x40,       0, 0, // Red ball
+    0, 0, 0x18, 0x30, 0x30, 0x40,          0, 0, // Volcano
     0x20, 0x20, 0x20, 0x20, 0x20, 0,    0, 0, // Timecop
     0x40, 0x40, 0x40, 0x40, 0x40, 0,    0, 0, // Hyper timecop
     0, 0, 0, 0, 0x38, 0x48,             0, 0  // Madman
@@ -55,7 +55,7 @@ const unsigned char SPRITE_DIMENSION_APPEARANCE_LUT[] = {
     // 0-5: 0: hide, 1: show in this dimension. 6-7 unused
     1, 1, 1, 0, 0, 0,       0, 0,
     0, 0, 1, 1, 1, 1,       0, 0,
-    0, 0, 0, 1, 1, 1,       0, 0, // Volcano
+    0, 0, 1, 1, 1, 1,       0, 0, // Volcano
     1, 1, 1, 1, 1, 0,       0, 0, // Timecop
     1, 1, 1, 1, 1, 0,       0, 0, // Hyper Timecop
     0, 0, 0, 0, 1, 1,       0, 0  // Madman

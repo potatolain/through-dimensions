@@ -118,6 +118,15 @@ temp/level_overworld.c: levels/overworld.tmx
 
 graphics/generated/tiles.png: graphics/tiles.chr graphics/sprites.chr graphics/palettes/main_bg.pal
 	$(CHR2IMG) graphics/tiles.chr graphics/palettes/main_bg.pal graphics/generated/tiles.png
+	cp graphics/generated/tiles.png graphics/generated/default.png
+
+	$(CHR2IMG) graphics/layers/calm.chr graphics/layers/calm.pal graphics/generated/calm.png
+	$(CHR2IMG) graphics/layers/normal.chr graphics/layers/normal.pal graphics/generated/normal.png
+	$(CHR2IMG) graphics/layers/desert.chr graphics/layers/desert.pal graphics/generated/desert.png
+	$(CHR2IMG) graphics/layers/stone.chr graphics/layers/stone.pal graphics/generated/stone.png
+	$(CHR2IMG) graphics/layers/darkstone.chr graphics/layers/darkstone.pal graphics/generated/darkstone.png
+	$(CHR2IMG) graphics/layers/darkness.chr graphics/layers/darkness.pal graphics/generated/darkness.png
+
 
 graphics/generated/sprites.png: graphics/tiles.chr graphics/sprites.chr graphics/palettes/main_sprite.pal source/sprites/sprite_definitions.c
 	$(SPRITE_DEF2IMG) ./source/sprites/sprite_definitions.c ./graphics/sprites.chr ./graphics/palettes/main_sprite.pal graphics/generated/sprites.png
@@ -156,3 +165,10 @@ run:
 
 space_check:
 	$(SPACE_CHECKER) rom/$(ROM_NAME).nes
+
+# make use_graphic f=desert 
+# Then use ctrl+t in tiled to reload
+use_graphic: 
+	cp graphics/generated/$(f).png graphics/generated/tiles.png
+use_default_graphic:
+	cp graphics/generated/default.png graphics/generated/tiles.png
