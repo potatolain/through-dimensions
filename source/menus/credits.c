@@ -7,6 +7,8 @@
 #include "source/menus/text_helpers.h"
 #include "source/configuration/game_info.h"
 
+#include "graphics/credits.h"
+
 CODE_BANK(PRG_BANK_CREDITS_MENU);
 
 void draw_win_screen(void) {
@@ -36,7 +38,7 @@ void draw_win_screen(void) {
 void draw_credits_screen(void) {
     set_vram_update(NULL);
     ppu_off();
-    clear_screen();
+    //clear_screen_with_border();
     // We reuse the title palette here, though we have the option of making our own if needed.
     pal_bg(titlePalette);
 	pal_spr(titlePalette);
@@ -46,7 +48,8 @@ void draw_credits_screen(void) {
     set_chr_bank_1(CHR_BANK_MENU);
 
     // Add whatever you want here; NTADR_A just picks a position on the screen for you. Your options are 0, 0 to 32, 30
-    put_str(NTADR_A(11, 2), "- Credits -");
+    /*
+    put_str(NTADR_A(11, 5), "- Credits -");
 
     put_str(NTADR_A(2, 6), "Game Design and Logic");
     put_str(NTADR_A(4, 8), gameAuthor);
@@ -62,6 +65,9 @@ void draw_credits_screen(void) {
     put_str(NTADR_A(22, 24), "by");
 
     put_str(NTADR_A(8, 26), gameAuthor);
+    */
+   vram_adr(0x2000);
+   vram_unrle(credits);
 
 
     // Hide all existing sprites

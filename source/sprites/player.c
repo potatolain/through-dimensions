@@ -93,7 +93,12 @@ void handle_player_movement(void) {
 
     if (DEBUG && controllerState & PAD_SELECT && !(lastControllerState & PAD_SELECT)) {
         ++currentStageId;
-        gameState = GAME_STATE_NEXT_LEVEL;
+        if (currentStageId > STAGE_COUNT) {
+            gameState = GAME_STATE_CREDITS;
+        } else { 
+            gameState = GAME_STATE_NEXT_LEVEL;
+            sfx_play(SFX_WIN, SFX_CHANNEL_1);
+        }
         sfx_play(SFX_WIN, SFX_CHANNEL_1);
         return;
     }
