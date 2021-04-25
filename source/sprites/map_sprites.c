@@ -61,8 +61,6 @@ const unsigned char SPRITE_DIMENSION_APPEARANCE_LUT[] = {
     0, 0, 0, 0, 1, 1,       0, 0  // Madman
 };
 
-};
-
 
 
 // Forward definition of this method; code is at the bottom of this file. Ignore this for now!
