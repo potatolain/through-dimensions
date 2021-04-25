@@ -41,7 +41,7 @@ const unsigned char SPRITE_SPEED_MOVEMENT_LUT[] = {
     // Format: spriteId->8 bytes
     // 0-5: speed in dimension, 6-7 unused
     // Normal, calm, desert, stone, dkstone, darkness
-    0x10, 0, 0x20, 0, 0, 0,              0, 0, // Blue Ball
+    0x10, 0x0a, 0x20, 0, 0, 0,          0, 0, // Blue Ball
     0, 0, 0x10, 0x20, 0x20, 0x40,       0, 0, // Red ball
     0, 0, 0, 0x18, 0x30, 0x40,          0, 0, // Volcano
     0x20, 0x20, 0x20, 0x20, 0x20, 0,    0, 0, // Timecop

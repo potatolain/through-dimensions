@@ -94,7 +94,7 @@ void main(void) {
                 // The draw map methods handle turning the ppu on/off, but we weren't quite done yet. Turn it back off.
                 ppu_off();
                 pal_bg(&layerPalettes[currentLayer<<4]);
-                set_chr_bank_0(CHR_BANK_TILES);
+                set_chr_bank_0(4 + currentLayer);
                 banked_call(PRG_BANK_HUD, draw_hud);
                 ppu_on_all();
 
@@ -113,6 +113,7 @@ void main(void) {
                 fade_out();
                 ppu_off();
                 pal_bg(&layerPalettes[currentLayer<<4]);
+                set_chr_bank_0(4 + currentLayer);
                 oam_clear(); // reset sprites
                 ppu_on_all();
                 fade_in();
@@ -153,7 +154,7 @@ void main(void) {
                 ppu_off();
                 banked_call(PRG_BANK_HUD, draw_hud);
                 pal_bg(&layerPalettes[currentLayer<<4]);
-                set_chr_bank_0(CHR_BANK_TILES);
+                set_chr_bank_0(4 + currentLayer);
 
                 ppu_on_all();
                 fade_in();

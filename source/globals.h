@@ -25,7 +25,7 @@ ZEROPAGE_EXTERN(unsigned char, playerGemCount);
 #define LAYER_DARKSTONE 4
 #define LAYER_DARKNESS 5
 
-#define STAGE_COUNT 10
+#define STAGE_COUNT 16
 
 #define DEBUG 1
 
