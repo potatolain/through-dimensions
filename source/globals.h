@@ -19,6 +19,8 @@ ZEROPAGE_EXTERN(unsigned char, currentStageId);
 ZEROPAGE_EXTERN(unsigned char, playerGemCount);
 ZEROPAGE_EXTERN(unsigned char, currentLevelGemCount);
 
+extern unsigned char goodEnding;
+
 #define LAYER_NORMAL 0
 #define LAYER_CALM 1
 #define LAYER_DESERT 2

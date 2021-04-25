@@ -18,6 +18,8 @@ ZEROPAGE_DEF(unsigned char, currentStageId);
 ZEROPAGE_DEF(unsigned char, playerGemCount);
 ZEROPAGE_DEF(unsigned char, currentLevelGemCount);
 
+unsigned char goodEnding = 0;
+
 ZEROPAGE_ARRAY_DEF(unsigned char, screenBuffer, 0x20);
 
 ZEROPAGE_DEF(unsigned char, everyOtherCycle);
