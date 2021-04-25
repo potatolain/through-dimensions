@@ -25,7 +25,7 @@ unsigned char test_collision(unsigned char tileId, unsigned char isPlayer) {
         case 31: // Rock (permanent)
             return 1; // Eternal tree
         case 28: // pillar
-            return currentLayer > LAYER_STONE ? 1 : 0;
+            return currentLayer > LAYER_DESERT ? 1 : 0;
         case 30: // vine
             return (currentLayer == LAYER_CALM || currentLayer > LAYER_DESERT) ? 1 : 0;
         case 35: // flower
