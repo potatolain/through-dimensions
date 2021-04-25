@@ -18,12 +18,12 @@ CODE_BANK(PRG_BANK_LEVEL_DEFS);
 
 // Set to 0 for normal gameplay
 // 16 is test room. 15 is last level
-#define FORCE_LEVEL 8
+#define FORCE_LEVEL 9
 
 const unsigned char levelFirstScreens[] = {
     0x01, 0x02, 0x03, 0x04,
     0x06, 0x09, 0x0b, 0x0d,
-    0x0e, 0x34, 0x28, 0x2a,
+    0x0e, 0x10, 0x28, 0x2a,
     0x30, 0x24, 0x38, 61,
 
     // TEST LEVEL
@@ -33,7 +33,7 @@ const unsigned char levelFirstScreens[] = {
 const unsigned char levelFirstDimensions[] = {
     LAYER_NORMAL,    LAYER_NORMAL,    LAYER_DESERT,    LAYER_CALM,
     LAYER_NORMAL,    LAYER_DESERT,    LAYER_NORMAL,    LAYER_STONE,
-    LAYER_NORMAL,    LAYER_NORMAL,    LAYER_NORMAL,    LAYER_NORMAL,
+    LAYER_NORMAL,    LAYER_STONE,    LAYER_NORMAL,    LAYER_NORMAL,
     LAYER_NORMAL,    LAYER_NORMAL,    LAYER_NORMAL,    LAYER_DARKNESS,
 
     // TEST LEVEL
@@ -43,7 +43,7 @@ const unsigned char levelFirstDimensions[] = {
 const unsigned char levelStartXPos[] = {
     48, 24, 128, 24,
     128, 64, 128, 24,
-    204, 128, 128, 128,
+    204, 64, 128, 128,
     128, 128, 128, 200,
 
     // TEST LEVEL
@@ -53,7 +53,7 @@ const unsigned char levelStartXPos[] = {
 const unsigned char levelStartYPos[] = {
     72, 64, 128, 112,
     128, 72, 128, 64,
-    72, 128, 128, 128,
+    72, 72, 128, 128,
     128, 128, 128, 72,
 
     // TEST LEVEL

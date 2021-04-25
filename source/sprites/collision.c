@@ -39,6 +39,8 @@ unsigned char test_collision(unsigned char tileId, unsigned char isPlayer) {
             return currentLayer >= LAYER_DESERT ? 1 : 0;
         case 40: // Brikx
             return currentLayer == LAYER_CALM ? 0 : 1;
+        case 41: // DKPillar
+            return currentLayer == LAYER_DARKSTONE || currentLayer == LAYER_DARKNESS ? 1 : 0;
 
 
         // Else continue and use default logic
