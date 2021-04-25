@@ -41,6 +41,7 @@ void init_map(void) {
     // Do some trickery to make the HUD show up at the top of the screen, with the map slightly below.
     scroll(0, 240-HUD_PIXEL_HEIGHT);
     set_mirroring(MIRROR_MODE_VERTICAL);
+    memfill(&currentMapSpritePersistance, 0, 64);
 }
 
 // Reusing a few temporary vars for the sprite function below.

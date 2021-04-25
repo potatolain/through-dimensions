@@ -17,6 +17,7 @@ ZEROPAGE_EXTERN(unsigned char, currentWorldId);
 ZEROPAGE_EXTERN(unsigned char, currentLayer);
 ZEROPAGE_EXTERN(unsigned char, currentStageId);
 ZEROPAGE_EXTERN(unsigned char, playerGemCount);
+ZEROPAGE_EXTERN(unsigned char, currentLevelGemCount);
 
 #define LAYER_NORMAL 0
 #define LAYER_CALM 1

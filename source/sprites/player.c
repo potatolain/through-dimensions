@@ -369,6 +369,7 @@ void handle_player_sprite_collision(void) {
             case SPRITE_TYPE_GEM:
                 if (playerGemCount < TOTAL_GEMS) {
                     ++playerGemCount;
+                    ++currentLevelGemCount;
                 } else {
                     playerGemCount = TOTAL_GEMS;
                 }

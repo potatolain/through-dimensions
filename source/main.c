@@ -83,7 +83,10 @@ void main(void) {
 
                 if (gameState != GAME_STATE_GAME_OVER) {
                     banked_call(PRG_BANK_LEVEL_DEFS, draw_level_intro);
+                } else {
+                    playerGemCount -= currentLevelGemCount;
                 }
+                currentLevelGemCount = 0;
 
                 banked_call(PRG_BANK_LEVEL_DEFS, load_level);
 
