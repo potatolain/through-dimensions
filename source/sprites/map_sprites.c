@@ -46,7 +46,7 @@ const unsigned char SPRITE_SPEED_MOVEMENT_LUT[] = {
     0, 0, 0, 0x18, 0x30, 0x40,          0, 0, // Volcano
     0x20, 0x20, 0x20, 0x20, 0x20, 0,    0, 0, // Timecop
     0x40, 0x40, 0x40, 0x40, 0x40, 0,    0, 0, // Hyper timecop
-    0, 0, 0, 0, 0x30, 0x50,             0, 0  // Madman
+    0, 0, 0, 0, 0x38, 0x48,             0, 0  // Madman
 };
 
 
