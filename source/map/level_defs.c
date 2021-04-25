@@ -16,34 +16,46 @@
 
 CODE_BANK(PRG_BANK_LEVEL_DEFS);
 
-#define FORCE_LEVEL 3
+#define FORCE_LEVEL 16
 
 const unsigned char levelFirstScreens[] = {
     0x01, 0x02, 0x03, 0x04,
     0x10, 0x24, 0x18, 0x1a,
     0x20, 0x34, 0x28, 0x2a,
-    0x30, 0x24, 0x38, 0x3a
+    0x30, 0x24, 0x38, 0x3a,
+
+    // TEST LEVEL
+    62
 };
 
 const unsigned char levelFirstDimensions[] = {
     LAYER_NORMAL,    LAYER_NORMAL,    LAYER_DESERT,    LAYER_CALM,
     LAYER_NORMAL,    LAYER_NORMAL,    LAYER_NORMAL,    LAYER_NORMAL,
     LAYER_NORMAL,    LAYER_NORMAL,    LAYER_NORMAL,    LAYER_NORMAL,
-    LAYER_NORMAL,    LAYER_NORMAL,    LAYER_NORMAL,    LAYER_NORMAL
+    LAYER_NORMAL,    LAYER_NORMAL,    LAYER_NORMAL,    LAYER_NORMAL,
+
+    // TEST LEVEL
+    LAYER_NORMAL
 };
 
 const unsigned char levelStartXPos[] = {
     48, 24, 128, 24,
     128, 128, 128, 128,
     128, 128, 128, 128,
-    128, 128, 128, 128
+    128, 128, 128, 128,
+
+    // TEST LEVEL
+    128
 };
 
 const unsigned char levelStartYPos[] = {
     72, 64, 128, 112,
     128, 128, 128, 128,
     128, 128, 128, 128,
-    128, 128, 128, 128
+    128, 128, 128, 128,
+
+    // TEST LEVEL
+    128
 };
 
 const unsigned char* LEVEL_INTRO_SCREEN[] = {
@@ -52,6 +64,9 @@ const unsigned char* LEVEL_INTRO_SCREEN[] = {
     0, 0, 0, 0,
     0, 0, 0, 0,
 
+
+    // TEST LEVEL
+    0,
 
     // Homeless, rehome us please!
     screen_gohome,
