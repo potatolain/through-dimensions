@@ -5,7 +5,19 @@
 ; a = song number
 ; x = ntsc/pal
 ;
+; @cppchriscpp HACK - do not reset position if possible
+ft_music_init_b:
+	pha
+	lda #1
+	sta FT_HACK
+	pla
+	jmp ft_music_init_f
 ft_music_init:
+	pha
+	lda #0
+	sta FT_HACK
+	pla
+ft_music_init_f:
 	asl a
 	jsr ft_load_song
 	; Kill APU registers
@@ -140,6 +152,46 @@ ft_load_song:
 	ldy #$00
 @LoadAddresses:
 .ifdef RELOCATE_MUSIC
+
+/*
+;;; HACK START
+
+
+pha
+txa
+pha
+tya
+pha
+lda #0
+sta FT_HACK_TEMP1
+sta FT_HACK_TEMP2
+
+lda FT_HACK
+cmp #1
+bne @no_hack1
+
+
+dey
+lda var_Song_list, y
+sec
+sbc ft_music_addr
+sta FT_HACK_TEMP1
+iny
+lda var_Song_list, y
+sbc ft_music_addr+1
+sta FT_HACK_TEMP2
+
+@no_hack1:
+pla
+tay
+pla
+tax
+pla
+
+;;; HACK (mostly) DONE
+
+*/
+
 	clc
 	lda (var_Temp_Pointer), y
 	adc ft_music_addr
@@ -148,6 +200,17 @@ ft_load_song:
 	lda (var_Temp_Pointer), y			; Song list offset, high addr
 	adc ft_music_addr + 1
 	sta var_Song_list, y
+;
+;;	dey
+;	clc
+;	lda var_Song_list, y
+;	adc FT_HACK_TEMP1
+;	sta var_Song_list, y
+;	iny
+;	lda var_Song_list, y
+;	adc FT_HACK_TEMP2
+;	sta var_Song_list, y
+
 .else
 	lda (var_Temp_Pointer), y
 	sta var_Song_list, y
@@ -293,9 +356,38 @@ ft_load_song:
 	stx var_ch_vrc7_CustomPatch
 .endif
 
+
+
+
+
+
+
+
 	inx								; Jump to the first frame
+
+
+;;; HACK START
+
+
+pha
+lda FT_HACK
+cmp #1
+bne @no_hack1
+ldx var_Current_Frame
+pla
+jmp @skip_frame
+
+@no_hack1:
+pla
+
+
+;;; HACK (mostly) DONE
+
+
 	stx var_Current_Frame
 	jsr ft_load_frame
+
+@skip_frame:
 
 	jsr ft_calculate_speed
 	;jsr ft_restore_speed
@@ -303,6 +395,10 @@ ft_load_song:
 	lda #$00
 	sta var_Tempo_Accum
 	sta var_Tempo_Accum + 1
+
+
+
+
 
 	rts
 

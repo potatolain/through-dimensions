@@ -107,6 +107,11 @@ PREV_4007:			.res 1
 
 TEMP: 				.res 11
 
+FT_HACK: .res 1
+
+FT_HACK_TEMP1:		.res 1
+FT_HACK_TEMP2:		.res 1
+
 PAD_BUF		=TEMP+1
 
 PTR			=TEMP	;word

@@ -22,7 +22,7 @@
 	.export _scroll,_split
 	.export _bank_spr,_bank_bg
 	.export _vram_read,_vram_write
-	.export _music_play,_music_stop,_music_pause
+	.export _music_play,_music_stop,_music_pause, _music_play_nonstop
 	.export _sfx_play
 	.export _pad_poll,_pad_trigger,_pad_state
 	.export _rand8,_rand16,_set_rand
@@ -1282,6 +1282,39 @@ _music_play:
 
 	ldx <NTSC_MODE
 	jsr ft_music_init
+	
+	lda #1
+	sta <MUSIC_PLAY
+
+	; Remember when we stored the old bank into BP_BANK and swapped? Time to roll back.
+	pla
+	sta BP_BANK
+	mmc1_register_write MMC1_PRG
+
+	rts
+
+_music_play_nonstop:
+
+	; @cppchriscpp Edit - forcing a swap to the music bank
+	; @cppchriscpp Edit 2 - Duplicating this function to not stop the music on swap when called this way. Same signature
+	; Need to temporarily swap banks to pull this off. 
+	tax ; Put our song into x for a moment...
+	; Being extra careful and setting BP_BANK to ours in case an nmi fires while we're doing this.
+	lda BP_BANK
+	pha
+	lda #SOUND_BANK
+	sta BP_BANK
+	mmc1_register_write MMC1_PRG
+	txa ; bring back the song number!
+
+
+	ldx #<music_data
+	stx <ft_music_addr+0
+	ldx #>music_data
+	stx <ft_music_addr+1
+
+	ldx <NTSC_MODE
+	jsr ft_music_init_b
 	
 	lda #1
 	sta <MUSIC_PLAY
