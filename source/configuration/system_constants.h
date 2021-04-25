@@ -55,6 +55,7 @@
 // Constants for songs we play in the game
 #define SONG_TITLE 0
 #define SONG_OVERWORLD 1
+#define SONG_VARIANCE 1
 
 // Constants for sound effects we play in the game
 #define SFX_HURT 3

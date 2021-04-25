@@ -18,7 +18,7 @@ CODE_BANK(PRG_BANK_LEVEL_DEFS);
 
 // Set to 0 for normal gameplay
 // 16 is test room. 15 is last level
-#define FORCE_LEVEL 15
+#define FORCE_LEVEL 16
 
 const unsigned char levelFirstScreens[] = {
     0x01, 0x02, 0x03, 0x04,

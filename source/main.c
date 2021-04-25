@@ -110,7 +110,7 @@ void main(void) {
                 }
                 
                 // Map drawing is complete; let the player play the game!
-                music_play(SONG_OVERWORLD);
+                music_play(SONG_VARIANCE + currentLayer);
                 fade_in();
                 gameState = GAME_STATE_RUNNING;
                 break;
@@ -122,6 +122,7 @@ void main(void) {
                 set_chr_bank_0(4 + currentLayer);
                 oam_clear(); // reset sprites
                 ppu_on_all();
+                music_play(SONG_VARIANCE + currentLayer);
                 fade_in();
                 gameState = GAME_STATE_RUNNING;
                 break;
