@@ -9,34 +9,33 @@
 #include "graphics/intro.h"
 #include "source/graphics/fade_animation.h"
 
+#include "graphics/title.h"
+
 CODE_BANK(PRG_BANK_TITLE);
 
 void draw_title_screen(void) {
     ppu_off();
-	pal_bg(titlePalette);
-	pal_spr(titlePalette);
+	pal_bg(real_title);
+	pal_spr(mainSpritePalette);
 
-	set_chr_bank_0(CHR_BANK_MENU);
-    set_chr_bank_1(CHR_BANK_MENU);
+	set_chr_bank_0(0x0a);
+    set_chr_bank_1(CHR_BANK_SPRITES);
 	clear_screen();
 	oam_clear();
 
-    
-    put_str(NTADR_A(7, 5), "Falling Deeper");
-	
-	put_str(NTADR_A(0, 24), "   A Ludum Dare 48 Compo Entry  ");
-	put_str(NTADR_A(0, 26), "     Theme: We must go deeper   ");
-	
-	put_str(NTADR_A(2, 28), "Copyright");
-	put_str(NTADR_A(12, 28), "2021");
-	put_str(NTADR_A(17, 28), "@cppchriscpp");
-
-	put_str(NTADR_A(10, 16), "Press Start!");
-
+	vram_adr(0x2000);
+	vram_unrle(title);
 
 	if (DEBUG) {
 		put_str(NTADR_A(2, 2), "DEBUG MODE ON");
-	}	
+	}
+
+	oam_spr(15 * 8, 18 * 8-2, 0x80, 0, 16);
+	oam_spr(16 * 8, 18 * 8-2, 0x81, 0, 20);
+	oam_spr(15 * 8, 19 * 8-2, 0x90, 0, 24);
+	oam_spr(16 * 8, 19 * 8-2, 0x91, 0, 28);
+	
+
 	ppu_on_all();
 
 	gameState = GAME_STATE_TITLE_INPUT;
@@ -50,6 +49,11 @@ void handle_title_input(void) {
 
 void draw_post_title(void) {
 	ppu_off();
+	set_chr_bank_0(CHR_BANK_MENU);
+	set_chr_bank_1(CHR_BANK_MENU);
+	pal_bg(titlePalette);
+	pal_spr(titlePalette);
+
 
 	vram_adr(0x2000);
 	vram_unrle(intro);

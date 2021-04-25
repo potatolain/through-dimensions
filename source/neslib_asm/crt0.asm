@@ -312,7 +312,7 @@ detectNTSC:
 .segment "CHR_09"
 	.incbin "graphics/layers/darkness.chr"
 .segment "CHR_0A"
-	.incbin "graphics/tiles.chr"
+	.incbin "graphics/title.chr"
 .segment "CHR_0B"
 	.incbin "graphics/tiles.chr"
 .segment "CHR_0C"

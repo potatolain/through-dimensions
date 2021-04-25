@@ -7,3 +7,5 @@ extern const unsigned char mainBgPalette[16];
 extern const unsigned char mainSpritePalette[16];
 
 extern const unsigned char layerPalettes[96];
+
+extern const unsigned char real_title[16];

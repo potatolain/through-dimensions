@@ -72,8 +72,10 @@ void main(void) {
 
                 oam_clear();
             case GAME_STATE_POST_TITLE:
+                
 
                 fade_out();
+                oam_clear(); // Title has sprites to axe
                 if (gameState == GAME_STATE_POST_TITLE) {
                     draw_post_title();
                     banked_call(PRG_BANK_MENU_INPUT_HELPERS, wait_for_start);
