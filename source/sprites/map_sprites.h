@@ -5,8 +5,8 @@
 // Maximum number of keys to let the player pick up.
 #define MAX_KEY_COUNT 99
 
-// FIXME: uh, that's definitely wrong.
-#define TOTAL_GEMS 4
+// FIXME: This assumes last level has 3. Give it 6 and round it to 30 please
+#define TOTAL_GEMS 27
 
 // We make our 16x16 sprites a little bit smaller than they appear, so collisions with them are
 // less likely. This makes getting hit by enemies less likely. This is only for collisions with

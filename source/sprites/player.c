@@ -393,7 +393,7 @@ void handle_player_sprite_collision(void) {
                 // NOTE: If something manages to do more than 16 damage at once, this might fail.
                 // if (playerHealth == 0 || playerHealth > 240) {
                     gameState = GAME_STATE_GAME_OVER;
-                    music_stop();
+                    //music_stop();
                     sfx_play(SFX_GAMEOVER, SFX_CHANNEL_1);
                     return;
                 // }

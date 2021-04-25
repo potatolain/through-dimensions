@@ -85,8 +85,6 @@ void main(void) {
                     banked_call(PRG_BANK_MENU_INPUT_HELPERS, wait_for_start);
                     sfx_play(SFX_CONFIRM, SFX_CHANNEL_1);
                     fade_out();
-                    // FIXME: Did this mess up music?
-                    //music_stop();
                 }
 
                 if (gameState != GAME_STATE_GAME_OVER) {
@@ -116,7 +114,11 @@ void main(void) {
                 
                 // Map drawing is complete; let the player play the game!
                 if (currentSong != currentLayer) {
-                    music_play(SONG_VARIANCE + currentLayer);
+                    if (currentSong == 255) {
+                        music_play(SONG_VARIANCE + currentLayer);
+                    } else {
+                        music_play_nonstop(SONG_VARIANCE + currentLayer);
+                    }
                     currentSong = currentLayer;
                 }
                 fade_in();
@@ -131,7 +133,11 @@ void main(void) {
                 oam_clear(); // reset sprites
                 ppu_on_all();
                 if (currentSong != currentLayer) {
-                    music_play(SONG_VARIANCE + currentLayer);
+                    if (currentSong == 255) {
+                        music_play(SONG_VARIANCE + currentLayer);
+                    } else {
+                        music_play_nonstop(SONG_VARIANCE + currentLayer);
+                    }
                     currentSong = currentLayer;
                 }
                 fade_in();
