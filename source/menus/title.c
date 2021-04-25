@@ -44,6 +44,7 @@ void draw_title_screen(void) {
 void handle_title_input(void) {
 	if (pad_trigger(0) & PAD_START) {
 		gameState = GAME_STATE_POST_TITLE;
+		sfx_play(SFX_CONFIRM, SFX_CHANNEL_1);
 	}
 }
 

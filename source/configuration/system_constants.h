@@ -65,6 +65,7 @@
 #define SFX_GEM 1
 #define SFX_TRANSITION_SPACE 4
 #define SFX_TRANSITION 0
+#define SFX_CONFIRM 0
 #define SFX_PAUSE_UP 5
 #define SFX_PAUSE_DOWN 6
 

@@ -99,8 +99,11 @@ void handle_player_movement(void) {
             gameState = GAME_STATE_NEXT_LEVEL;
             sfx_play(SFX_WIN, SFX_CHANNEL_1);
         }
-        sfx_play(SFX_WIN, SFX_CHANNEL_1);
         return;
+    }
+
+    if (DEBUG && controllerState & PAD_B && !(lastControllerState & PAD_B)) {
+        ++playerGemCount;
     }
 
     // If Start is pressed now, and was not pressed before...

@@ -34,6 +34,7 @@ void draw_win_screen(void) {
     */
 
     if (goodEnding) {
+        sfx_play(SFX_WIN, SFX_CHANNEL_1);
         // FIXME: Put an ending here
 
         vram_adr(0x2000);
@@ -44,6 +45,7 @@ void draw_win_screen(void) {
 	    oam_spr(16 * 8, 24 * 8-2, 0x91, 0, 28);
 
     } else {
+        sfx_play(0x07, SFX_CHANNEL_1);
         vram_adr(0x2000);
         vram_unrle(badend);
 

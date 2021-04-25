@@ -79,6 +79,7 @@ void main(void) {
                 if (gameState == GAME_STATE_POST_TITLE) {
                     draw_post_title();
                     banked_call(PRG_BANK_MENU_INPUT_HELPERS, wait_for_start);
+                    sfx_play(SFX_CONFIRM, SFX_CHANNEL_1);
                     fade_out();
                     music_stop();
                 }
@@ -177,7 +178,7 @@ void main(void) {
                 break;
             case GAME_STATE_CREDITS:
                 music_stop();
-                sfx_play(SFX_WIN, SFX_CHANNEL_1);
+                //sfx_play(SFX_WIN, SFX_CHANNEL_1);
 
                 fade_out();
                 // Draw the "you won" screen
