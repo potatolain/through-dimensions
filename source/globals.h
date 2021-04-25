@@ -19,7 +19,7 @@ ZEROPAGE_EXTERN(unsigned char, currentStageId);
 ZEROPAGE_EXTERN(unsigned char, playerGemCount);
 
 #define LAYER_NORMAL 0
-#define LaYER_CALM 1
+#define LAYER_CALM 1
 #define LAYER_DESERT 2
 #define LAYER_STONE 3
 #define LAYER_DARKSTONE 4

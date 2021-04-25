@@ -23,7 +23,7 @@ const unsigned char levelFirstScreens[] = {
 };
 
 const unsigned char levelFirstDimensions[] = {
-    LAYER_NORMAL,    LAYER_NORMAL,    LAYER_DESERT,    LAYER_NORMAL,
+    LAYER_NORMAL,    LAYER_NORMAL,    LAYER_DESERT,    LAYER_CALM,
     LAYER_NORMAL,    LAYER_NORMAL,    LAYER_NORMAL,    LAYER_NORMAL,
     LAYER_NORMAL,    LAYER_NORMAL,    LAYER_NORMAL,    LAYER_NORMAL,
     LAYER_NORMAL,    LAYER_NORMAL,    LAYER_NORMAL,    LAYER_NORMAL

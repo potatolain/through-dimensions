@@ -16,7 +16,7 @@ unsigned char test_collision(unsigned char tileId, unsigned char isPlayer) {
         case 33:
             return (currentLayer == LAYER_DESERT || currentLayer == LAYER_STONE) ? 0 : 1;
         case 26: // Rock
-            return currentLayer > LaYER_CALM ? 0 : 1;
+            return currentLayer > LAYER_CALM ? 0 : 1;
         case 25: // tree
             return currentLayer > LAYER_DESERT ? 0 : 1;
         case 29: // fence
@@ -27,9 +27,9 @@ unsigned char test_collision(unsigned char tileId, unsigned char isPlayer) {
         case 28: // pillar
             return currentLayer > LAYER_STONE ? 1 : 0;
         case 30: // vine
-            return (currentLayer == LaYER_CALM || currentLayer > LAYER_DESERT) ? 1 : 0;
+            return (currentLayer == LAYER_CALM || currentLayer > LAYER_DESERT) ? 1 : 0;
         case 35: // flower
-            return currentLayer == LaYER_CALM ? 1 : 0;
+            return currentLayer == LAYER_CALM ? 1 : 0;
         case 36: // vine bridge
             return currentLayer == LAYER_NORMAL || currentLayer == LAYER_DESERT || currentLayer > LAYER_STONE;
         // Else continue and use default logic
