@@ -93,7 +93,7 @@ void handle_player_movement(void) {
 
     if (DEBUG && controllerState & PAD_SELECT && !(lastControllerState & PAD_SELECT)) {
         ++currentStageId;
-        if (currentStageId > STAGE_COUNT) {
+        if (currentStageId >= STAGE_COUNT) {
             gameState = GAME_STATE_CREDITS;
         } else { 
             gameState = GAME_STATE_NEXT_LEVEL;
@@ -471,7 +471,13 @@ void handle_player_sprite_collision(void) {
                 break;
             case SPRITE_TYPE_ENDGAME:
                 ++currentStageId;
-                if (currentStageId > STAGE_COUNT) {
+                if (currentStageId >= STAGE_COUNT) {
+                    // This is the most bs way to calculate this ever, but it works..
+                    if ((playerYPosition >> PLAYER_POSITION_SHIFT) < 100) {
+                        goodEnding = 1;
+                    } else {
+                        goodEnding = 0;
+                    }
                     gameState = GAME_STATE_CREDITS;
                 } else { 
                     gameState = GAME_STATE_NEXT_LEVEL;

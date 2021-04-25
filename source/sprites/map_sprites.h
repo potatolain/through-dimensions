@@ -5,14 +5,15 @@
 // Maximum number of keys to let the player pick up.
 #define MAX_KEY_COUNT 99
 
-#define TOTAL_GEMS 23
+// FIXME: uh, that's definitely wrong.
+#define TOTAL_GEMS 4
 
 // We make our 16x16 sprites a little bit smaller than they appear, so collisions with them are
 // less likely. This makes getting hit by enemies less likely. This is only for collisions with
 // the player.
 #define SPRITE_HITBOX_OFFSET 52
 // This does the same thing, but only for sprite collisions with tiles.
-#define SPRITE_TILE_HITBOX_OFFSET 10
+#define SPRITE_TILE_HITBOX_OFFSET 24
 
 // Used to figure out where to put the sprites in sprite memory.
 // Have to skip over sprite 0 (0x00) and player (0x10)

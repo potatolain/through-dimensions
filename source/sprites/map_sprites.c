@@ -110,7 +110,7 @@ void update_map_sprites(void) {
                 ) || (
                     // FIXME: This doesn't work!! Need to rewrite this logic. We need the index off spriteDefinitions, which we don't have! Need another way...
                     // Maybe we can reuse position 7/13 like we do with damage sprites?
-                    i == SPRITE_ID_GEM_DARK_TRANSFER && playerGemCount < TOTAL_GEMS
+                    playerGemCount < TOTAL_GEMS && currentMapSpriteData[currentMapSpriteIndex + MAP_SPRITE_DATA_POS_DAMAGE] == 255
                 )
             ) || (
                 megaTemp == SPRITE_TYPE_REGULAR_ENEMY && SPRITE_DIMENSION_APPEARANCE_LUT[(currentMapSpriteData[currentMapSpriteIndex + MAP_SPRITE_DATA_POS_DAMAGE] << 3) + currentLayer] == 0
