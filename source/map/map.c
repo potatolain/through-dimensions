@@ -701,6 +701,32 @@ void do_scroll_screen_transition(void) {
     // Hide sprite 0 - it has now served its purpose.
     oam_spr(SPRITE_OFFSCREEN, SPRITE_OFFSCREEN, HUD_SPRITE_ZERO_TILE_ID, 0x00, 0);
 
+    // If we're on the endgame tile, show the gem counter
+    if (playerOverworldPosition == 60 && currentLayer == LAYER_DARKNESS) {
+        oam_spr(12*16, 8*16-3, 0xcc, 0x01, 0xc0);
+        oam_spr(12*16+8, 8*16-3, 0xcd, 0x01, 0xc4);
+        oam_spr(12*16+16, 8*16-3, 0xdc, 0x01, 0xc8);
+        oam_spr(12*16+24, 8*16-3, 0xdd, 0x01, 0xcc);
+        
+        oam_spr(12*16-4, 8*16+8-3, 0xf0 + (playerGemCount / 10), 0x01, 0xd0);
+        oam_spr(12*16+8-4, 8*16+8-3, 0xf0 + (playerGemCount % 10), 0x01, 0xd4);
+        oam_spr(12*16+16-4, 8*16+8-3, 0xe9, 0x01, 0xd8);
+        oam_spr(12*16+24-4, 8*16+8-3, 0xf0 + (TOTAL_GEMS / 10), 0x01, 0xdc);
+        oam_spr(12*16+32-4, 8*16+8-3, 0xf0 + (TOTAL_GEMS % 10), 0x01, 0xe0);
+    } else {
+        oam_spr(SPRITE_OFFSCREEN, SPRITE_OFFSCREEN, SPRITE_OFFSCREEN, 0x01, 0xc0);
+        oam_spr(SPRITE_OFFSCREEN, SPRITE_OFFSCREEN, SPRITE_OFFSCREEN, 0x01, 0xc4);
+        oam_spr(SPRITE_OFFSCREEN, SPRITE_OFFSCREEN, SPRITE_OFFSCREEN, 0x01, 0xc8);
+        oam_spr(SPRITE_OFFSCREEN, SPRITE_OFFSCREEN, SPRITE_OFFSCREEN, 0x01, 0xcc);
+        
+        oam_spr(SPRITE_OFFSCREEN, SPRITE_OFFSCREEN, SPRITE_OFFSCREEN, 0x01, 0xd0);
+        oam_spr(SPRITE_OFFSCREEN, SPRITE_OFFSCREEN, SPRITE_OFFSCREEN, 0x01, 0xd4);
+        oam_spr(SPRITE_OFFSCREEN, SPRITE_OFFSCREEN, SPRITE_OFFSCREEN, 0x01, 0xd8);
+        oam_spr(SPRITE_OFFSCREEN, SPRITE_OFFSCREEN, SPRITE_OFFSCREEN, 0x01, 0xdc);
+        oam_spr(SPRITE_OFFSCREEN, SPRITE_OFFSCREEN, SPRITE_OFFSCREEN, 0x01, 0xe0);
+
+    }
+
     xScrollPosition = -1;
     gameState = GAME_STATE_RUNNING;
 
