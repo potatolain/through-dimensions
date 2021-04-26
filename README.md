@@ -1,6 +1,27 @@
-# Falling Deeper
+# Through Dimensions
 
-A Ludum Dare 48 Compo game. Details later, if I don't run out of steam.
+A Ludum Dare 48 Compo game. 
+
+Through Dimensions is a new action/puzzle game for the Nintendo NES. (Yes, really!) 
+
+One day, while tending to your garden, you notice an odd cloud, hovering near the ground. "What's this?" you ponder, unaware that this cloud might just change your life. 
+
+Travel deeper and deeper (:wink:) through various dimensions in an attempt to get back home.
+
+Don't forget to collect the gems as you go. Rumor has it you can buy your way back to reality!
+
+This is _not_ a deep emotional game like my last Ludum Dare. After the way 2020 and 2021 went, I needed a real escape. A weekend of carefree game creation seemed like the perfect ticket. 
+
+There's no underlying theme or anything- this is just a self-indulgent fun project. I had fun making this, and I hope you'll have as much fun playing!
+
+# Controls
+
+A Button (Z): Interact
+
+Directional Pad (Arrow Keys): Move
+
+Start (Enter): Pause
+
 
 # Credits
 
