@@ -30,7 +30,7 @@ extern unsigned char goodEnding;
 
 #define STAGE_COUNT 13
 
-#define DEBUG 1
+#define DEBUG 0
 
 ZEROPAGE_ARRAY_EXTERN(unsigned char, screenBuffer, 0x20);
 

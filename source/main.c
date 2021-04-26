@@ -186,12 +186,14 @@ void main(void) {
                 break;
             case GAME_STATE_GAME_OVER:
                 fade_out();
+                music_pause(1);
 
                 // Draw the "you lose" screen
                 banked_call(PRG_BANK_GAME_OVER, draw_game_over_screen);
                 delay(30);
                 fade_in();
                 banked_call(PRG_BANK_MENU_INPUT_HELPERS, wait_for_start);
+                music_pause(0);
                 goto game_over_restart;
                 break;
             case GAME_STATE_CREDITS:

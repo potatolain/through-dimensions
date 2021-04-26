@@ -74,9 +74,8 @@ void update_hud(void) {
     screenBuffer[i++] = MSB(NTADR_A(25, 27)) | NT_UPD_HORZ;
     screenBuffer[i++] = LSB(NTADR_A(25, 27));
     screenBuffer[i++] = 2;
-    // FIXME: Draw layer names if we have the space
     screenBuffer[i++] = HUD_TILE_NUMBER;
-    screenBuffer[i++] = HUD_TILE_NUMBER + currentLayer + 1;
+    screenBuffer[i++] = HUD_TILE_NUMBER + (currentLayer == 0 ? 1 : currentLayer == 1 ? 0 : currentLayer) + 1;
 
 
     screenBuffer[i++] = NT_UPD_EOF;
