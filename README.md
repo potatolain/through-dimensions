@@ -14,6 +14,8 @@ This is _not_ a deep emotional game like my last Ludum Dare. After the way 2020 
 
 There's no underlying theme or anything- this is just a self-indulgent fun project. I had fun making this, and I hope you'll have as much fun playing!
 
+Grab a NES rom or play it online [here](http://cpprograms.net/classic-gaming/through-dimensions).
+
 # Controls
 
 A Button (Z): Interact
