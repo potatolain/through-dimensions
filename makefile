@@ -6,7 +6,7 @@
 # ===== USER SETTINGS START HERE =====
 
 # The name of the output rom, without the trailing .nes.
-ROM_NAME=we-must-go-derper
+ROM_NAME=through-dimensions
 
 # ===== USER SETTINGS END HERE =====
 
