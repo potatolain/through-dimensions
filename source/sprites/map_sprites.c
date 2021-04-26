@@ -100,7 +100,7 @@ void update_map_sprites(void) {
 
         }
 
-        megaTemp = currentMapSpriteData[currentMapSpriteIndex + MAP_SPRITE_DATA_POS_TYPE] ;
+        megaTemp = currentMapSpriteData[currentMapSpriteIndex + MAP_SPRITE_DATA_POS_TYPE];
         if (
              megaTemp == SPRITE_TYPE_OFFSCREEN || 
             (
@@ -308,6 +308,12 @@ void update_map_sprites(void) {
         sprX8 = sprX >> SPRITE_POSITION_SHIFT;
         sprY8 = sprY >> SPRITE_POSITION_SHIFT;
         tempMapSpriteIndex = (currentMapSpriteData[currentMapSpriteIndex + MAP_SPRITE_DATA_POS_SIZE_PALETTE] & SPRITE_PALETTE_MASK) >> 6;
+
+        // MEGA HACK: If you're sparkles, AND we're in the stone zone, use a lighter palette
+        if (currentMapSpriteData[currentMapSpriteIndex + MAP_SPRITE_DATA_POS_TYPE] == SPRITE_TYPE_TRANSITION && currentLayer == LAYER_STONE) {
+            tempMapSpriteIndex = 2;
+        }
+
         if (currentSpriteSize == SPRITE_SIZE_8PX_8PX) {
             oam_spr(
                 sprX8 + (NES_SPRITE_WIDTH/2),
