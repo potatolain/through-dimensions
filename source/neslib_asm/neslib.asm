@@ -1294,6 +1294,7 @@ _music_play:
 	rts
 
 _music_play_nonstop:
+	jmp _music_play
 
 	; @cppchriscpp Edit - forcing a swap to the music bank
 	; @cppchriscpp Edit 2 - Duplicating this function to not stop the music on swap when called this way. Same signature
