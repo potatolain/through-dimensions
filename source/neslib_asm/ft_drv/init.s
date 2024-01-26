@@ -5,7 +5,7 @@
 ; a = song number
 ; x = ntsc/pal
 ;
-; @cppchriscpp HACK - do not reset position if possible
+; @igwgames HACK - do not reset position if possible
 ft_music_init_b:
 	pha
 	lda #1
